@@ -1,12 +1,18 @@
+import os
 from pymongo import MongoClient
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
+from dotenv import load_dotenv
 
 # db username: mohsen
 # db password: yM9AckoSon6JVR2G
 
+load_dotenv()
+
+username = os.getenv("DB_USERNAME")
+password = os.getenv("DB_PASSWORD")
 # Verbindungsdaten für MongoDB
-uri = "mongodb+srv://mohsen:yM9AckoSon6JVR2G@chatbot-mohsen.ns8oyv4.mongodb.net/?retryWrites=true&w=majority&appName=Chatbot-Mohsen"
+uri = f"mongodb+srv://{username}:{password}@chatbot-mohsen.ns8oyv4.mongodb.net/?retryWrites=true&w=majority&appName=Chatbot-Mohsen"
 
 # Verbindung zur MongoDB herstellen
 client = MongoClient(uri)
