@@ -51,6 +51,7 @@ def get_chatgpt_response(question):
         return "Es gab ein Problem bei der Verarbeitung Ihrer Anfrage. Bitte versuchen Sie es später erneut."
 
 # Neue FAQs in die MongoDB einfügen und den ChatBot damit trainieren
+# In eigene Datei legen. Am beste in eine faq.json datei
 new_faqs = [
     {
         'question': 'Warum sollte ich mich für eine Karriere als Data Analyst entscheiden?',
@@ -152,6 +153,7 @@ new_faqs = [
     }
 ]
 
+# in Funktion einbetten
 for new_faq in new_faqs:
     question = new_faq['question']
     if not is_question_in_collection(question):
@@ -163,6 +165,7 @@ for new_faq in new_faqs:
 
 
 # Funktion zum Anzeigen und Beantworten von Fragen
+# Nach SRP (Single responsibility principle) 2 Funktionen: display_question, answer_question
 def display_and_answer_questions():
     # Alle Fragen abrufen und dem Benutzer anzeigen
     questions = [faq['question'] for faq in faq_collection.find()]
@@ -200,6 +203,7 @@ def display_and_answer_questions():
     # Antwort anzeigen
     print(f"\nAntwort: {response}")
 
+# if __name__ == "__main__": hinzufügen
 # Hauptmenü
 while True:
     print("\nWas möchten Sie tun?")
