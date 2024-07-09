@@ -19,3 +19,6 @@ six==1.16.0
 SQLAlchemy==1.2.19
 tqdm==4.66.4
 typing_extensions==4.12.2
+openai==0.28
+streamlit==1.26.0
+hashlib==20081119
