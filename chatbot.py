@@ -1,6 +1,5 @@
 import os
 from openai import OpenAI
-
 from pymongo import MongoClient
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
@@ -9,104 +8,113 @@ import streamlit as st
 import hashlib
 from datetime import datetime
 
-# Load environment variables
+# Neue Importe für die Textverarbeitung
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Herunterladen der notwendigen NLTK-Daten
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+# Laden der Umgebungsvariablen
 load_dotenv()
 
-# Load connection data from environment variables
+# Laden der Verbindungsdaten aus den Umgebungsvariablen
 username = os.getenv("DB_USERNAME")
 password = os.getenv("DB_PASSWORD")
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"), 
-                       project=os.getenv("OPENAI_ORGANIZATION_ID"),)
+                       project=os.getenv("OPENAI_ORGANIZATION_ID"))
 
-
-# Admin credentials (loaded from environment variables)
+# Admin-Anmeldedaten (aus Umgebungsvariablen geladen)
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
-ADMIN_PASSWORD = hashlib.sha256(
-    os.getenv("ADMIN_PASSWORD").encode()).hexdigest()
+ADMIN_PASSWORD = hashlib.sha256(os.getenv("ADMIN_PASSWORD").encode()).hexdigest()
 
-# MongoDB connection URI
+# MongoDB-Verbindungs-URI
 uri = f"mongodb+srv://{username}:{password}@chatbot-mohsen.ns8oyv4.mongodb.net/?retryWrites=true&w=majority"
 
-# Connect to MongoDB
+# Verbindung zu MongoDB herstellen
 mongo_client = MongoClient(uri)
 
-# Connect to database and collections
+# Verbindung zur Datenbank und den Sammlungen herstellen
 db = mongo_client.chatbot
 faq_collection = db.faq
 messages_collection = db.messages
 
-# Create ChatterBot instance
+# ChatterBot-Instanz erstellen
 chatbot = ChatBot('MyChatBot')
 
-# Trainer for the ChatBot
+# Trainer für den ChatBot
 trainer = ListTrainer(chatbot)
 
-# Function to check if question is already in the collection
+# Funktion zum Extrahieren wichtiger Stichwörter aus einem Text
+def extract_keywords(text):
+    # Text in Kleinbuchstaben umwandeln und in Wörter aufteilen
+    tokens = word_tokenize(text.lower())
+    # Nur alphabetische Tokens behalten
+    tokens = [token for token in tokens if token.isalpha()]
+    # Stoppwörter entfernen
+    tokens = [token for token in tokens if token not in stopwords.words("german")]
+    # Lemmatisierung durchführen (Wörter auf Grundform zurückführen)
+    lemmatizer = WordNetLemmatizer()
+    lemmas = [lemmatizer.lemmatize(token) for token in tokens]
+    return lemmas
 
+# Funktion zum Vergleichen von Fragen basierend auf Stichwörtern
+def compare_questions(question1, question2):
+    # TF-IDF-Vektorisierung der Fragen
+    tfidf = TfidfVectorizer()
+    vectors = tfidf.fit_transform([question1, question2])
+    # Berechnung der Cosinus-Ähnlichkeit
+    similarity = cosine_similarity(vectors[0], vectors[1])[0][0]
+    return similarity
 
+# Überarbeitete Funktion zur Überprüfung, ob eine ähnliche Frage in der Sammlung existiert
 def is_question_in_collection(question):
-    return faq_collection.find_one({'question': question}) is not None
+    all_faqs = faq_collection.find()
+    for faq in all_faqs:
+        similarity = compare_questions(question, faq['question'])
+        if similarity > 0.7:  # Schwellenwert für die Ähnlichkeit
+            return True, faq['answer']
+    return False, None
 
-# Function to get a response from ChatGPT using Chat Completion API
-
-
+# Funktion zum Erhalten einer Antwort von ChatGPT mittels Chat Completion API
 def get_chatgpt_response(question):
-    response = openai_client.chat.completions.create(model="gpt-3.5-turbo",
-                                                     messages=[
-                                                         {"role": "system",
-                                                             "content": "You are a helpful assistant."},
-                                                         {"role": "user",
-                                                             "content": question}
-                                                     ])
+    response = openai_client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Du bist ein hilfreicher Assistent."},
+            {"role": "user", "content": question}
+        ]
+    )
     return response.choices[0].message.content.strip()
-    # try:
-    #     response = openai.ChatCompletion.create(
-    #         model="gpt-3.5-turbo",
-    #         organization=organization_id,
-    #         messages=[
-    #             {"role": "system", "content": "You are a helpful assistant."},
-    #             {"role": "user", "content": question}
-    #         ]
-    #     )
-    #     return response.choices[0].message['content'].strip()
-    # except openai.error.RateLimitError:
-    #     return "Entschuldigung, ich kann im Moment keine weiteren Fragen beantworten. Bitte versuchen Sie es später erneut."
-    # except Exception as e:
-    #     print(f"An error occurred: {e}")
-    #     return "Es gab ein Problem bei der Verarbeitung Ihrer Anfrage. Bitte versuchen Sie es später erneut."
 
-# Function to add a new FAQ
-
-
+# Funktion zum Hinzufügen einer neuen FAQ
 def add_faq(question, answer):
-    if not is_question_in_collection(question):
+    if not is_question_in_collection(question)[0]:
         faq_collection.insert_one({'question': question, 'answer': answer})
         trainer.train([question, answer])
         return True
     return False
 
-# Function to get all FAQs
-
-
+# Funktion zum Abrufen aller FAQs
 def get_all_faqs():
     return list(faq_collection.find())
 
-# Function to delete an FAQ
-
-
+# Funktion zum Löschen einer FAQ
 def delete_faq(question):
     result = faq_collection.delete_one({'question': question})
     return result.deleted_count > 0
 
-# Function to check admin credentials
-
-
+# Funktion zur Überprüfung der Admin-Anmeldedaten
 def check_admin_credentials(username, password):
     return username == ADMIN_USERNAME and hashlib.sha256(password.encode()).hexdigest() == ADMIN_PASSWORD
 
-# Function to send a message to admin
-
-
+# Funktion zum Senden einer Nachricht an den Admin
 def send_message_to_admin(user_name, message):
     messages_collection.insert_one({
         'user_name': user_name,
@@ -116,39 +124,29 @@ def send_message_to_admin(user_name, message):
         'response': None
     })
 
-# Function to get all messages
-
-
+# Funktion zum Abrufen aller Nachrichten
 def get_all_messages():
     return list(messages_collection.find().sort('timestamp', -1))
 
-# Function to respond to a message
-
-
+# Funktion zum Antworten auf eine Nachricht
 def respond_to_message(message_id, response):
     messages_collection.update_one(
         {'_id': message_id},
         {'$set': {'response': response, 'status': 'answered'}}
     )
 
-# Function to delete a message
-
-
+# Funktion zum Löschen einer Nachricht
 def delete_message(message_id):
     messages_collection.delete_one({'_id': message_id})
 
-# Admin panel
-
-
+# Admin-Panel
 def admin_panel():
-    st.header("Admin Panel")
+    st.header("Admin-Panel")
 
-    admin_action = st.selectbox("Wählen Sie eine Aktion", [
-                                "FAQs verwalten", "Nachrichten verwalten"])
+    admin_action = st.selectbox("Wählen Sie eine Aktion", ["FAQs verwalten", "Nachrichten verwalten"])
 
     if admin_action == "FAQs verwalten":
-        faq_action = st.selectbox(
-            "FAQ-Aktion auswählen", ["FAQs anzeigen", "FAQ hinzufügen", "FAQ löschen"])
+        faq_action = st.selectbox("FAQ-Aktion auswählen", ["FAQs anzeigen", "FAQ hinzufügen", "FAQ löschen"])
 
         if faq_action == "FAQs anzeigen":
             faqs = get_all_faqs()
@@ -169,8 +167,7 @@ def admin_panel():
         elif faq_action == "FAQ löschen":
             faqs = get_all_faqs()
             questions = [faq['question'] for faq in faqs]
-            question_to_delete = st.selectbox(
-                "Wählen Sie die zu löschende Frage:", questions)
+            question_to_delete = st.selectbox("Wählen Sie die zu löschende Frage:", questions)
             if st.button("FAQ löschen"):
                 if delete_faq(question_to_delete):
                     st.success("FAQ erfolgreich gelöscht!")
@@ -182,14 +179,12 @@ def admin_panel():
         for message in messages:
             st.subheader(f"Nachricht von {message['user_name']}")
             st.write(f"Gesendet am: {message['timestamp']}")
-            st.write(
-                f"Status: {'Beantwortet' if message['status'] == 'answered' else 'Ungelesen'}")
+            st.write(f"Status: {'Beantwortet' if message['status'] == 'answered' else 'Ungelesen'}")
             st.write(f"Nachricht: {message['message']}")
-            if message.response:
-                st.write(f"Antwort: {message.response}")
+            if message.get('response'):
+                st.write(f"Antwort: {message['response']}")
             else:
-                response = st.text_area(
-                    f"Antwort für {message['user_name']}:", key=str(message['_id']))
+                response = st.text_area(f"Antwort für {message['user_name']}:", key=str(message['_id']))
                 if st.button(f"Antworten an {message['user_name']}", key=f"btn_{message['_id']}"):
                     respond_to_message(message['_id'], response)
                     st.success("Antwort gesendet!")
@@ -200,39 +195,36 @@ def admin_panel():
                 st.experimental_rerun()
             st.write("---")
 
-# Streamlit app
-
-
+# Streamlit-App
 def main():
     st.title("Chatbot mit FAQ und Direktnachrichten")
 
-    # Initialize session state
+    # Initialisierung des Session-Zustands
     if 'admin_logged_in' not in st.session_state:
         st.session_state.admin_logged_in = False
 
-    # Sidebar for navigation
+    # Seitenleiste für die Navigation
     page = st.sidebar.selectbox("Wählen Sie eine Seite", ["Chat", "Admin"])
 
     if page == "Chat":
         st.header("Häufig gestellte Fragen (FAQ)")
 
-        # Display FAQs
+        # Anzeigen der FAQs
         faqs = get_all_faqs()
         for faq in faqs:
             with st.expander(faq['question']):
                 st.write(faq['answer'])
 
         st.header("Chat")
-        st.write(
-            "Wenn Ihre Frage nicht in den FAQs beantwortet wurde, stellen Sie sie hier:")
+        st.write("Wenn Ihre Frage nicht in den FAQs beantwortet wurde, stellen Sie sie hier:")
         user_input = st.text_input("Stellen Sie Ihre Frage:")
         if user_input:
-            if is_question_in_collection(user_input):
-                response = chatbot.get_response(user_input)
+            is_similar, existing_answer = is_question_in_collection(user_input)
+            if is_similar:
+                st.text_area("Antwort:", value=existing_answer, height=200, max_chars=None, key=None)
             else:
                 response = get_chatgpt_response(user_input)
-            st.text_area("Antwort:", value=str(response),
-                         height=200, max_chars=None, key=None)
+                st.text_area("Antwort:", value=str(response), height=200, max_chars=None, key=None)
 
         st.header("Nachricht an Admin senden")
         user_name = st.text_input("Ihr Name:")
@@ -261,7 +253,6 @@ def main():
             if st.button("Logout"):
                 st.session_state.admin_logged_in = False
                 st.experimental_rerun()
-
 
 if __name__ == "__main__":
     main()
