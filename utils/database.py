@@ -1,6 +1,8 @@
 import os
 from openai import OpenAI
 from pymongo import MongoClient
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 from dotenv import load_dotenv
 import hashlib
 from datetime import datetime
@@ -33,6 +35,11 @@ db = mongo_client.chatbot
 faq_collection = db.faq
 messages_collection = db.messages
 
+# ChatBot setup
+chatbot = ChatBot('MyChatBot')
+trainer = ListTrainer(chatbot)
+
+# Utility functions
 def extract_keywords(text):
     tokens = word_tokenize(text.lower())
     tokens = [token for token in tokens if token.isalpha() and token not in stopwords.words("german")]
