@@ -1,0 +1,46 @@
+[
+    {
+        "question": "Warum sollte ich mich für eine Karriere als Data Analyst entscheiden?",
+        "answer": "Die Nachfrage nach Datenexperten wächst rapide. Bis 2025 werden in Europa rund 4 Millionen Datenexperten benötigt. Allein im Jahr 2021 wurden in Deutschland über 80.000 IT-Stellen ausgeschrieben. Besonders die Nachfrage nach Daten- und KI-Experten nimmt weiter zu.\n\nEine Karriere im Datenbereich bietet jedoch mehr als nur eine sichere Zukunft. Als Datenexperte arbeitest du an bedeutungsvollen, gesellschaftlichen Themen, bist technisch versiert, kommunikativ und kreativ. Der Beruf ist vielfältig, lässt sich mit vielen anderen Berufen kombinieren und bietet ein gutes Einkommen. Das Wichtigste: Die Ausbildung ist mit unserer Unterstützung gut erlernbar."
+    },
+    {
+        "question": "Bin ich nach der Weiterbildung zum Data Analyst qualifiziert, in diesem Beruf zu arbeiten und kann den Quereinstieg wagen?",
+        "answer": "Nach erfolgreichem Abschluss unserer Weiterbildung erhältst du mehrere Abschlusszertifikate, die du bei Bewerbungen als Kompetenznachweis verwenden kannst. Der Arbeitsmarkt für Data Analysts ist derzeit sehr gefragt, was dir auch ohne einschlägige Berufserfahrung gute Chancen auf einen Einstieg bietet. Es gibt in nahezu jeder Branche Bedarf an Analytikern, die zwar unterschiedliche Jobtitel tragen, aber dieselben Fähigkeiten und Kenntnisse wie Data Analysts benötigen."
+    },
+    {
+        "question": "Wie viel verdienen Data Analysts?",
+        "answer": "Das Gehalt eines Data Analysts variiert je nach Branche, Unternehmen und Erfahrung. Laut Glassdoor liegt das durchschnittliche Gehalt eines Data Analysts bei 56.000 € pro Jahr. Der Bereich Data Science wächst stetig, wodurch Data Analysts immer gefragter werden und auch gehaltstechnisch gute Karrierechancen bieten."
+    },
+    {
+        "question": "Was ist ein Bildungsgutschein?",
+        "answer": "Ein Bildungsgutschein bestätigt, dass ein Kostenträger wie die Agentur für Arbeit oder das Jobcenter die Kosten für eine berufliche Weiterbildung übernimmt. Der Bildungsgutschein wird im Gespräch mit einem Arbeitsvermittler beantragt, wobei geklärt wird, ob die Voraussetzungen für eine finanzielle Förderung erfüllt sind."
+    },
+    {
+        "question": "Wo beantrage ich einen Bildungsgutschein?",
+        "answer": "Wenn du arbeitslos bist und eine Weiterbildung bei DataSmart Point absolvieren möchtest, kannst du einen Bildungsgutschein über das Arbeitsamt, das Jobcenter oder die Arbeitsagentur beantragen. Mit diesem staatlichen Zuschuss kannst du die Kosten für die Teilnahme an unserem Programm komplett übernehmen lassen."
+    },
+    {
+        "question": "Wie beantrage ich den Bildungsgutschein?",
+        "answer": "Um einen Bildungsgutschein zu beantragen, vereinbart man einen Termin bei der Agentur für Arbeit oder dem Jobcenter. Während des Termins wird geklärt, ob Bedarf und Anspruch auf die finanzielle Förderung mit einem Bildungsgutschein besteht."
+    },
+    {
+        "question": "Wer hat Anspruch auf einen Bildungsgutschein?",
+        "answer": "Anspruch auf einen Bildungsgutschein haben Personen mit Wohnsitz in Deutschland, die arbeitslos sind, von Arbeitslosigkeit bedroht sind oder denen relevante Qualifikationen für ihren derzeitigen Beruf fehlen. Ob die Voraussetzungen für die Förderung mit einem Bildungsgutschein gegeben sind, entscheidet der zuständige Berater der Agentur für Arbeit oder des Jobcenters."
+    },
+    {
+        "question": "Welche Weiterbildungen werden von der Agentur für Arbeit bezahlt?",
+        "answer": "Die Agentur für Arbeit bezahlt Weiterbildungen, Umschulungen und Ausbildungen in allen Branchen, vorausgesetzt, es besteht ein aktueller Bedarf auf dem Arbeitsmarkt. Der Bildungsträger muss zudem eine AZAV-Zertifizierung haben."
+    },
+    {
+        "question": "Was ist eine AZAV-Zertifizierung?",
+        "answer": "AZAV-zertifizierte Bildungsträger erfüllen die Voraussetzungen der Verordnung und Akkreditierung von Arbeitsförderung nach dem Dritten Sozialgesetzbuch und können somit Bildungsgutscheine einlösen. DataSmart Point ist AZAV-zertifiziert."
+    },
+    {
+        "question": "Wie sieht ein Bildungsgutschein aus?",
+        "answer": "Der Bildungsgutschein ist ein offizielles Dokument, das die Rahmenbedingungen für eine berufliche Weiterbildung festhält. Auf dem Bildungsgutschein sind folgende Informationen vermerkt:\n\n- Gültigkeitsdauer\n- Kosten\n- Weiterbildungsdauer\n- Bildungsziel\n- Unterrichtsart\n- Weiterbildungsstätte\n- Weiterbildungsort."
+    },
+    {
+        "question": "Gibt es einen Bildungsgutschein für berufstätige Menschen?",
+        "answer": "Für berufstätige Menschen kommt ein Bildungsgutschein nur in Frage, wenn sie von Arbeitslosigkeit bedroht sind, weil beispielsweise ein Arbeitsvertrag endet, eine Kündigung bevorsteht oder ihnen die beruflichen Qualifikationen fehlen, um den Beruf weiterhin auszuführen."
+    }
+]
