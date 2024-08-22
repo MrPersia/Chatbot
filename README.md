@@ -44,5 +44,5 @@ pip install -r requirements.txt
 Verwendung des Chatbots: Stellen Sie Fragen und erhalten Sie Antworten durch Interaktion mit dem KI-gestützten Chatbot.
 
 Kontakt
-Für Fragen oder Anmerkungen können Sie mich über LinkedIn https://www.linkedin.com/in/mohsen-sabziyan-7a3b17221/ oder per E-Mail an sabziyanmohsen@gmail.com erreichen.
+Für Fragen oder Anmerkungen können Sie mich über LinkedIn: [Hier ansehen](https://www.linkedin.com/in/mohsen-sabziyan-7a3b17221/)  oder per E-Mail an sabziyanmohsen@gmail.com erreichen.
 
