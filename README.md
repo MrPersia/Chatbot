@@ -1,21 +1,20 @@
 # AI-Assistent Chat
 Willkommen zum AI-Assistent Chat! Dies ist mein Abschlussprojekt im Rahmen meiner Weiterbildung und bietet eine interaktive Plattform für automatisierte Kundeninteraktionen mit einem KI-gestützten Chatbot.
 
-Projektübersicht
+# Projektübersicht
 AI-Assistent Chat nutzt moderne Technologien, um eine effiziente, benutzerfreundliche und skalierbare Lösung für den Kundenservice zu bieten. Die Anwendung umfasst ein Admin-Panel zur Verwaltung von FAQs und Benutzernachrichten sowie einen intelligenten Chatbot zur Beantwortung von Fragen und Anfragen.
 
-Funktionen
-Interaktive Startseite: Benutzerfreundliches Layout mit einfacher Navigation.
-Admin-Panel: Sicherer Zugang zur Verwaltung von FAQs und Nachrichten.
-KI-gestützter Chatbot: Kombination von vorgefertigten Antworten und AI-Modell für präzise und schnelle Antworten.
-Datenmanagement: Verwendung von MongoDB zur flexiblen und skalierbaren Verwaltung von Daten.
-Technologie-Stack
-Frontend: Streamlit für die Benutzeroberfläche.
-Backend: Python, MongoDB für die Datenbank.
-AI: OpenAI für die KI-gestützten Antworten.
-Utilities: NLTK für Textverarbeitung, TfidfVectorizer für die Fragevergleichung.
-Installation
+# Funktionen
+- Interaktive Startseite: Benutzerfreundliches Layout mit einfacher Navigation.
+- Admin-Panel: Sicherer Zugang zur Verwaltung von FAQs und Nachrichten.
+- KI-gestützter Chatbot: Kombination von vorgefertigten Antworten und AI-Modell für präzise und schnelle Antworten.
+- Datenmanagement: Verwendung von MongoDB zur flexiblen und skalierbaren Verwaltung von Daten.
 
+# Technologie-Stack
+- Frontend: Streamlit für die Benutzeroberfläche.
+- Backend: Python, MongoDB für die Datenbank.
+- AI: OpenAI für die KI-gestützten Antworten.
+- Utilities: NLTK für Textverarbeitung, TfidfVectorizer für die Fragevergleichung.
 
 Links
 Live-Demo der App: [Hier ansehen](https://chatbot-g9xjm9ujctrnqv45hyzziw.streamlit.app/)
