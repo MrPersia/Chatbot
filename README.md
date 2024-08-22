@@ -1,23 +1,4 @@
-# AI-Assistent Chat – Abschlussprojekt
-
-Ich freue mich, mein Abschlussprojekt „AI-Assistent Chat“ vorzustellen, das ich im Rahmen meiner Weiterbildung entwickelt habe. Diese webbasierte Anwendung nutzt künstliche Intelligenz, um eine effiziente und benutzerfreundliche Plattform für automatisierte Kundeninteraktion zu bieten.
-
-Highlights des Projekts:
-
-Interaktive Startseite: Benutzerfreundliches Layout mit klarer Navigation.
-Admin-Panel: Sichere Verwaltung von FAQs und Benutzernachrichten.
-KI-gestützter Chatbot: Kombination von vorgefertigten Antworten und AI-Modell für präzise und schnelle Unterstützung.
-Datenmanagement: Nutzung von MongoDB für flexible und skalierbare Datenverarbeitung.
-Das Projekt bietet Unternehmen eine Möglichkeit zur Automatisierung des Kundenservice, verbessert die Effizienz und steigert die Kundenzufriedenheit.
-
-Entwicklungsdetails:
-
-Ich freue mich auf Ihr Feedback und stehe für Rückfragen jederzeit zur Verfügung!
-
-Diese Beschreibung vermittelt alle wichtigen Informationen prägnant und professionell und ist ideal für LinkedIn.
-
-
-AI-Assistent Chat
+# AI-Assistent Chat
 Willkommen zum AI-Assistent Chat! Dies ist mein Abschlussprojekt im Rahmen meiner Weiterbildung und bietet eine interaktive Plattform für automatisierte Kundeninteraktionen mit einem KI-gestützten Chatbot.
 
 Projektübersicht
@@ -36,8 +17,14 @@ Utilities: NLTK für Textverarbeitung, TfidfVectorizer für die Fragevergleichun
 Installation
 
 
-Nutzung
-Starten Sie die Streamlit-App:
+Links
+Live-Demo der App: [Hier ansehen](https://chatbot-g9xjm9ujctrnqv45hyzziw.streamlit.app/)
+
+Beiträge
+Beiträge sind willkommen! Wenn Sie Vorschläge haben oder einen Fehler finden, öffnen Sie bitte ein Issue oder einen Pull-Request.
+
+Kontakt
+Für Fragen oder Anmerkungen können Sie mich über LinkedIn oder per E-Mail an mohsen@example.com erreichen.
 
 ## Install virtualenv
 ```bash
