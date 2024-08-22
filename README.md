@@ -20,11 +20,10 @@ Installation
 Links
 Live-Demo der App: [Hier ansehen](https://chatbot-g9xjm9ujctrnqv45hyzziw.streamlit.app/)
 
-Beiträge
-Beiträge sind willkommen! Wenn Sie Vorschläge haben oder einen Fehler finden, öffnen Sie bitte ein Issue oder einen Pull-Request.
-
 Kontakt
-Für Fragen oder Anmerkungen können Sie mich über LinkedIn oder per E-Mail an mohsen@example.com erreichen.
+Für Fragen oder Anmerkungen können Sie mich über LinkedIn: [Hier ansehen](https://www.linkedin.com/in/mohsen-sabziyan-7a3b17221/)  oder per E-Mail an sabziyanmohsen@gmail.com erreichen.
+
+
 
 ## Install virtualenv
 ```bash
@@ -42,7 +41,4 @@ pip install -r requirements.txt
 ```
 
 Verwendung des Chatbots: Stellen Sie Fragen und erhalten Sie Antworten durch Interaktion mit dem KI-gestützten Chatbot.
-
-Kontakt
-Für Fragen oder Anmerkungen können Sie mich über LinkedIn: [Hier ansehen](https://www.linkedin.com/in/mohsen-sabziyan-7a3b17221/)  oder per E-Mail an sabziyanmohsen@gmail.com erreichen.
 
