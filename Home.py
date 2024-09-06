@@ -1,19 +1,58 @@
-# Home.py
 import streamlit as st
 
-st.set_page_config(layout="wide", page_title="AI-Assistent Chat", page_icon="🤖")
-st.title("🤖 Willkommen beim AI-Assistent Chat")
+# Seitenkonfiguration
+st.set_page_config(layout="wide", page_title="AI-Assistant Chat Plattform", page_icon="🤖")
+
+# Festlegung der Farben
+bg_color = "#FFFFFF"  
+text_color = "#000000"  
+logo_color = "#007BFF"  
+
+# Seitenhintergrundfarbe anpassen
+st.markdown(f"""
+    <style>
+    .reportview-container {{
+        background-color: {bg_color};
+        color: {text_color};
+    }}
+    .sidebar .sidebar-content {{
+        background-color: {bg_color};
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
+# Seitenleiste
+st.sidebar.markdown("<h2 style='text-align: center;'>📬 Kontakt</h2>", unsafe_allow_html=True)
+
+# Blaue Icons
+cols = st.sidebar.columns(3)
+with cols[0]:
+    st.markdown(f"[![GitHub](https://img.icons8.com/ios-glyphs/60/{logo_color[1:]}/github.png)](https://github.com/MrPersia)")
+with cols[1]:
+    st.markdown(f"[![LinkedIn](https://img.icons8.com/ios-glyphs/60/{logo_color[1:]}/linkedin.png)](https://www.linkedin.com/in/mohsen-sabziyan-7a3b17221/)")
+with cols[2]:
+    st.markdown(f"[![E-Mail](https://img.icons8.com/ios-glyphs/60/{logo_color[1:]}/email.png)](mailto:sabziyanmohsen@gmail.com)")
+
+# Hauptinhalt
+st.title("🤖 Willkommen zur AI-Assistent Chat Plattform")
 st.image("Home_bot_image.jpeg", use_column_width=True)
-st.write("""
-Willkommen auf unserer AI-Assistent-Plattform! Hier finden Sie Unterstützung und Informationen zu verschiedenen Themen.
 
-Nutzen Sie die Seitenleiste, um zwischen den verschiedenen Funktionen zu navigieren:
+st.write(f"""
+Ich bin Mohsen Sabziyan, ein engagierter Datenanalyst. 
+Diese KI-Chatplattform wurde entwickelt, um Ihnen modernste Lösungen im Bereich der künstlichen Intelligenz und Datenanalyse zu bieten. 
 
-- 👤 Admin: Verwaltungsbereich für autorisierte Benutzer
-- 💬 Chat: Interagieren Sie direkt mit unserem AI-Assistenten
-- ❓ FAQ: Finden Sie Antworten auf häufig gestellte Fragen
+Mit Hilfe fortschrittlicher NLP-Technologien ermöglicht diese Plattform natürliche und intuitive Gespräche 
+und verbessert kontinuierlich die Benutzererfahrung durch ein lernfähiges System.
+""", color=text_color)
 
-Wir hoffen, dass Sie hier die Informationen finden, die Sie suchen!
-""")
+st.markdown("---")
+st.subheader("🔍 Navigation")
+st.write(f"""
+Verwenden Sie die Seitenleiste, um durch die Plattform zu navigieren:
+- 👤 **Admin-Bereich**: Verwaltung und Konfiguration (nur für autorisierte Benutzer)
+- 💬 **Chat**: Sprechen Sie direkt mit unserem AI-Assistenten
+- ❓ **FAQ**: Antworten auf häufig gestellte Fragen
+""", color=text_color)
 
-st.sidebar.success("Wählen Sie eine Seite oben aus.")
+st.markdown("---")
+st.write(f"© 2024 Mohsen Sabziyan. Alle Rechte vorbehalten.", color=text_color)
