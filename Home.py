@@ -4,9 +4,9 @@ import streamlit as st
 st.set_page_config(layout="wide", page_title="AI-Assistant Chat Plattform", page_icon="🤖")
 
 # Festlegung der Farben
-bg_color = "#FFFFFF"  
-text_color = "#000000"  
-logo_color = "#007BFF"  
+bg_color = "#FFFFFF"  # Weißer Hintergrund für Light Mode
+text_color = "#000000"  # Schwarzer Text für Light Mode
+logo_color = "#007BFF"  # Blau für Icons
 
 # Seitenhintergrundfarbe anpassen
 st.markdown(f"""
@@ -21,8 +21,10 @@ st.markdown(f"""
     </style>
     """, unsafe_allow_html=True)
 
+st.sidebar.success("Wählen Sie eine Seite oben aus.")
+
 # Seitenleiste
-st.sidebar.markdown("<h2 style='text-align: center;'>📬 Kontakt</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("<h2 style='text-align: center;'>📬 Kontakt : Mohsen Sabziyan</h2>", unsafe_allow_html=True)
 
 # Blaue Icons
 cols = st.sidebar.columns(3)
