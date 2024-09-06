@@ -52,7 +52,7 @@ st.subheader("🔍 Navigation")
 st.write(f"""
 Verwenden Sie die Seitenleiste, um durch die Plattform zu navigieren:
 - 👤 **Admin-Bereich**: Verwaltung und Konfiguration (nur für autorisierte Benutzer)
-- 💬 **Chat**: Sprechen Sie direkt mit unserem AI-Assistenten
+- - 💬 **Chat**: Schreiben Sie direkt mit unserem AI-Assistenten und erhalten Sie in Echtzeit Antworten auf Ihre Fragen.
 - ❓ **FAQ**: Antworten auf häufig gestellte Fragen
 """, color=text_color)
 
